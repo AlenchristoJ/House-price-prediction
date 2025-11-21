@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>House Price Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.IIon24He0K6yaGa4hB-KBwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
+           alt="house logo" class="brand-logo">
+      <div class="brand-text">House Price Predictor</div>
+    </div>
+
+    <div class="spacer"></div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1 class="hero-title">House Price Prediction</h1>
+      <p class="hero-sub">Smart, fast predictions — tweak the inputs and hit <strong>Predict</strong>.</p>
+    </section>
+
+    <section class="card">
+      <form method="POST" class="form-grid">
+        <div class="price-area">
+          <div class="price-kicker">Predicted Price</div>
+          <div id="predictedPrice" class="price">${{ price }}</div>
+          <div class="meta">Based on area, bedrooms, bathrooms, location &amp; features</div>
+        </div>
+
+        <label class="field">
+          <span class="label">Area (sq ft)</span>
+          <input name="area" type="number" step="1" min="0" value="{{ inputs.area }}">
+        </label>
+
+        <label class="field">
+          <span class="label">Bedrooms</span>
+          <input name="bedrooms" type="number" step="1" min="0" value="{{ inputs.bedrooms }}">
+        </label>
+
+        <label class="field">
+          <span class="label">Bathrooms</span>
+          <input name="bathrooms" type="number" step="1" min="0" value="{{ inputs.bathrooms }}">
+        </label>
+
+        <label class="field">
+          <span class="label">Stories</span>
+          <input name="stories" type="number" step="1" min="0" value="{{ inputs.stories }}">
+        </label>
+
+        <label class="field">
+          <span class="label">Parking</span>
+          <input name="parking" type="number" step="1" min="0" value="{{ inputs.parking }}">
+        </label>
+
+        <label class="field">
+          <span class="label">Main Road</span>
+          <select name="mainroad">
+            <option value="yes" {% if inputs.mainroad=='yes' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if inputs.mainroad=='no' %}selected{% endif %}>No</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="label">Guest Room</span>
+          <select name="guestroom">
+            <option value="yes" {% if inputs.guestroom=='yes' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if inputs.guestroom=='no' %}selected{% endif %}>No</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="label">Basement</span>
+          <select name="basement">
+            <option value="yes" {% if inputs.basement=='yes' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if inputs.basement=='no' %}selected{% endif %}>No</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="label">Hot Water Heating</span>
+          <select name="hotwaterheating">
+            <option value="yes" {% if inputs.hotwaterheating=='yes' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if inputs.hotwaterheating=='no' %}selected{% endif %}>No</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="label">Air Conditioning</span>
+          <select name="airconditioning">
+            <option value="yes" {% if inputs.airconditioning=='yes' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if inputs.airconditioning=='no' %}selected{% endif %}>No</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="label">Preferred Area</span>
+          <select name="prefarea">
+            <option value="yes" {% if inputs.prefarea=='yes' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if inputs.prefarea=='no' %}selected{% endif %}>No</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="label">Furnishing Status</span>
+          <select name="furnishingstatus">
+            <option value="semi-furnished" {% if inputs.furnishingstatus=='semi-furnished' %}selected{% endif %}>Semi-Furnished</option>
+            <option value="furnished" {% if inputs.furnishingstatus=='furnished' %}selected{% endif %}>Furnished</option>
+            <option value="unfurnished" {% if inputs.furnishingstatus=='unfurnished' %}selected{% endif %}>Unfurnished</option>
+          </select>
+        </label>
+
+        <div class="submit-wrap">
+          <button class="btn" type="submit">Predict</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Model prediction — validate with local market experts before negotiation.</small>
+  </footer>
+</body>
+</html>
